@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
-// import { Menu } from 'antd';
-// import { UserOutlined } from '@ant-design/icons';
+import axios from "axios"
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import axios from 'axios';
-import { UsersInfo } from './UsersInfo';
+import { FetchApi } from './FetchApi';
 import { Navbar } from './Navbar';
+import { UsersInfo } from './UsersInfo';
 
 
 
 export const MainApp = () => {
 
   const [data, setData] = useState(null);
-  // const [current, setCurrent] = useState('mail');
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     async function getData() {
@@ -28,63 +26,26 @@ export const MainApp = () => {
   }, []);
   console.log(data);
 
-  // const handleClick = (e) => {
-  //   console.log('click ', e);
-  //   setCurrent(e.key);
-  // };
-
-
-
   return (
+
     <div>
-
-      {/* <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal" style={{ backgroundColor: 'black' }}>
-        <Menu.Item key="mail" icon={<UserOutlined />}>
-          People User
-        </Menu.Item>
-      </Menu> */}
-
-      <Navbar />
-
       <Router>
-        <Link className="container" to="/"> Home</Link>
+        
+        <Navbar />
+        {/* <hr /> */}
 
-        {/* <Link className="container" to="/users">UserInfo</Link> */}
-       
-        <div className="row row-cols-6 row-cols-md-6 g-3">
-          {
-            data ? data.results.map(data => (
-              <div className="col">
-                <div className="card">
-                  <img src={data.picture.large} key={data.id.value} className="card-img-top" alt="thumbnail"></img>
-                  <div className="card-body">
-                  <h5 className="card-title">User</h5>
-                </div>
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Name: { data.name.first }</li>
-                    <li className="list-group-item">City: { data.location.city }</li>
-                    <li className="list-group-item">Country: { data.location.country }</li>
-                  </ul>
-                  <div className="card-body">
-                    <Link to="/users" className="card-link">More Info</Link>
-                  </div>
-                </div>
-              </div>
-            )) : null
-          }
+        <div className="container">
+          <Switch>
+            <Route exact path="/users" render={() => <UsersInfo currentUser={currentUser} />} />
+            <Route path="/" render={() => <FetchApi selectUser={setCurrentUser} data={data} />} />
+          </Switch>
         </div>
-
-        <Switch>
-          <Route exact path="/users" component={UsersInfo} />
-        </Switch>
 
       </Router>
 
-
-
-
     </div>
 
+    
 
   )
 }

@@ -1,0 +1,47 @@
+.card-column {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25px;
+  text-align: left;
+  padding: 0rem 4rem;
+
+}
+
+.img-picture {
+  margin: auto 3rem;
+  margin-top: 0rem;
+  margin-right: 0rem;
+
+}
+
+.img-photo {
+  width: 325px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.ant-list-header {
+  text-align: center;
+  font-size: 25px;
+}
+
+.user-info {
+  margin-left: -5px;
+  width: 320px;
+}
+
+.container {
+  margin-top: 2rem;
+}
+
+.message {
+  background-color: white;
+  border:2px solid red;
+  padding: .5rem;
+  text-align: center;
+  color: red;
+  text-transform: uppercase;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
