@@ -24,7 +24,7 @@ export const MainApp = () => {
     getData();
 
   }, []);
-  console.log(data);
+  // console.log(data);
 
   return (
 
